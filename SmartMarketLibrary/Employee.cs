@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartMarketLibrary.Tests;
 
 namespace SmartMarketLibrary
 {
@@ -30,12 +31,23 @@ namespace SmartMarketLibrary
 
         public Employee(Employee toCopy)
         {
-            throw new NotImplementedException();
+            Id = toCopy.Id;
+            _changes = toCopy._changes;
+            Name = toCopy.Name;
+            Login = toCopy.Login;
+            Password = toCopy.Password;
+            Role = toCopy.Role;
         }
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Employee employee)
+            {
+                return employee.Id == Id && employee._changes!=null?employee._changes.Equals(_changes):_changes==null && employee.Name == Name &&
+                       employee.Role == Role && employee.Login == Login && employee.Password == Password;
+            }
+
+            return false;
         }
     }
 }

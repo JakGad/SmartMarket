@@ -36,7 +36,7 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void EqualsFalse()
         {
-            Assert.IsTrue(_supplier.Equals(new Supplier()
+            Assert.IsFalse(_supplier.Equals(new Supplier()
             {
                 Id = 2,
                 Name = "Supply1",

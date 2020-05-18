@@ -20,12 +20,25 @@ namespace SmartMarketLibrary
 
         public Sale(Sale toCopy)
         {
-            throw new NotImplementedException();
+            Id = toCopy.Id;
+            Seller = toCopy.Seller;
+            Sold = toCopy.Sold;
+            Date = toCopy.Date;
         }
         
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj==null)
+            {
+                return false;
+            }
+
+            if (obj is Sale sale)
+            {
+                return Id == sale.Id && Seller == sale.Seller && Sold == sale.Sold && Date == sale.Date;
+            }
+
+            return false;
         }
     }
 }

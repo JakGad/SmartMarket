@@ -42,11 +42,11 @@ namespace SmartMarketLibrary.Tests
         public void CopyConstructor()
         {
             var result=new Delivery(_delivery);
-            Assert.AreEqual(result.Date, _delivery.Date);
-            Assert.AreEqual(result.Id, _delivery.Id);
-            Assert.AreEqual(result.Invoice, _delivery.Invoice);
-            Assert.AreEqual(result.Manager, _delivery.Manager);
-            Assert.AreEqual(result.Products, _delivery.Products);
+            Assert.AreEqual(_delivery.Date, result.Date);
+            Assert.AreEqual(_delivery.Id, result.Id);
+            Assert.AreEqual(_delivery.Invoice, result.Invoice);
+            Assert.AreEqual(_delivery.Manager, result.Manager);
+            Assert.AreEqual(_delivery.Products, result.Products);
         }
 
         [Test]

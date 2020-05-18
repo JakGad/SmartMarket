@@ -20,16 +20,28 @@ namespace SmartMarketLibrary
 
         public Delivery()
         {
+            _changes=new List<Change>();
         }
 
         public Delivery(Delivery toCopy)
         {
-            throw new NotImplementedException();
+            Id = toCopy.Id;
+            _changes = toCopy._changes;
+            Manager = toCopy.Manager;
+            Products = toCopy.Products;
+            Date = toCopy.Date;
+            Invoice = toCopy.Invoice;
         }
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Delivery delivery)
+            {
+                return Id == delivery.Id && Manager.Equals(delivery.Manager) && _changes.Equals(delivery.Changes) &&
+                       Invoice == delivery.Invoice && Products.Equals(delivery.Products) && Date.Equals(delivery.Date);
+            }
+
+            return false;
         }
     }
 }

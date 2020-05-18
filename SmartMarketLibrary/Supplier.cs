@@ -20,12 +20,22 @@ namespace SmartMarketLibrary
 
         public Supplier(Supplier toCopy)
         {
-            throw new NotImplementedException();
+            _changes = toCopy._changes;
+            Id = toCopy.Id;
+            Name = toCopy.Name;
+            NIP = toCopy.NIP;
         }
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj == null) return false;
+            if (obj is Supplier supplier)
+            {
+                return ((_changes?.Equals(supplier._changes) ?? supplier._changes == null) && Id == supplier.Id &&
+                       Name == supplier.Name && NIP == supplier.NIP);
+            }
+
+            return false;
         }
     }
 }

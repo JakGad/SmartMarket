@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +15,29 @@ namespace SmartMarketLibrary
         public string Details { get;  set; }
         public Change(Employee changing, string details)
         {
-            throw new NotImplementedException();
+            Changing = changing;
+            Date=DateTime.Now;
+            Details = details;
         }
         public Change(){}
 
         public Change(Change toCopy)
         {
-            throw new NotImplementedException();
+            Id = toCopy.Id;
+            Changing = toCopy.Changing;
+            Date = toCopy.Date;
+            Details = toCopy.Details;
         }
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Change change)
+            {
+                return Id == change.Id && Changing == change.Changing && Date == change.Date && Details == change.Details;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
