@@ -18,55 +18,44 @@ namespace SmartMarketLibrary.Tests
             Login = "LogIn1",
             Name = "Carl Colossus",
             Password = DatabaseServices.GetMd5Hash("CArlOs01"),
-            Role = RolesEnum.Cashier
+            Role = 1
 
         };
         [Test]
         public void Constructor()
         {
-            var result = new Change(_employee, "SomeDetails");
+            var result = new EmployeeChange(_employee, _employee,  "SomeDetails");
             Assert.IsTrue(result.Date - DateTime.Now < new TimeSpan(0, 0, 0, 2));
-            Assert.AreEqual(result.Changing, _employee);
+            Assert.AreEqual(result.Employee, _employee);
+            Assert.AreEqual(result.Employee1, _employee);
             Assert.AreEqual(result.Details, "SomeDetails");
         }
 
         [Test]
         public void CopyConstructor()
         {
-            var temp = new Change(_employee, "SomeDetails");
+            var temp = new EmployeeChange(_employee,_employee,  "SomeDetails");
             temp.Id = 2;
-            var result = new Change(temp);
+            var result = new EmployeeChange(temp);
             Assert.AreEqual(result.Date, temp.Date);
-            Assert.AreEqual(result.Changing, temp.Changing);
+            Assert.AreEqual(result.Employee, temp.Employee);
             Assert.AreEqual(result.Details, temp.Details);
             Assert.AreEqual(result.Id, temp.Id);
         }
 
-        private static Change _change = new Change()
-        {
-            Changing = _employee,
-            Date = DateTime.Today,
-            Details = "Some details",
-            Id = 1
-        };
+        private static EmployeeChange _change = new EmployeeChange(_employee, _employee, "Det1");
 
 
         [Test]
         public void EqualsTrue()
         {
-            Assert.IsTrue(_change.Equals(new Change(_change)));
+            Assert.IsTrue(_change.Equals(new EmployeeChange(_change)));
         }
 
         [Test]
         public void EqualsFalse()
         {
-            Assert.IsFalse(_change.Equals( new Change()
-            {
-                Changing = _employee,
-                Date = DateTime.Today,
-                Details = "Some details",
-                Id = 2
-            }));
+            Assert.IsFalse(_change.Equals(new EmployeeChange(_employee, _employee, "Det2")));
         }
     }
 }

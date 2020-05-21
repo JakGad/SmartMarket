@@ -12,19 +12,15 @@ namespace SmartMarketLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier
+    public partial class EmployeeChange
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier()
-        {
-            this.Deliveries = new HashSet<Delivery>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string NIP { get; set; }
+        public System.DateTime Date { get; set; }
+        public string Details { get; set; }
+        public Nullable<int> Changing_Id { get; set; }
+        public Nullable<int> Changed_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Delivery> Deliveries { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

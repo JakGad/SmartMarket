@@ -16,7 +16,7 @@ namespace SmartMarketLibrary.Tests
             Login = "LogIn1",
             Name = "Carl Colossus",
             Password = DatabaseServices.GetMd5Hash("CArlOs01"),
-            Role = RolesEnum.Cashier
+            Role = 1
         };
         [Test]
         public void CopyConstructor()
@@ -43,7 +43,7 @@ namespace SmartMarketLibrary.Tests
                 Login = "LogIn1",
                 Name = "Carl Colossus",
                 Password = DatabaseServices.GetMd5Hash("CArlOs01"),
-                Role = RolesEnum.Cashier
+                Role = 1
             }));
         }
     }

@@ -26,6 +26,6 @@ namespace SmartMarketLibrary
         decimal Margin { get; set; }
         bool Availability { get; set; }
         new Group ProductGroup { get; set; }
-        IReadOnlyList<Change> Changes { get; }
+        IReadOnlyList<ProductChange> Changes { get; }
     }
 }

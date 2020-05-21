@@ -17,35 +17,25 @@ namespace SmartMarketLibrary.Tests
             Login = "LogIn1",
             Name = "Carl Colossus",
             Password = DatabaseServices.GetMd5Hash("CArlOs01"),
-            Role = RolesEnum.Cashier
+            Role = 1
 
         };
         private static Delivery _delivery = new Delivery()
         {
-            
-                Date = new DateTime(2019, 09, 12),
-                Id = 1,
-                Invoice = "favat014",
-                Manager = new Employee()
-                {
-                    Id = 2,
-                    Login = "Karuzela102",
-                    Password = DatabaseServices.GetMd5Hash("NUnit01"),
-                    Role = RolesEnum.Manager
-                },
-                Products = new List<Tuple<Product, int, decimal>>()
-                {
-                    new Tuple<Product, int, decimal>(new Product(), 5, (decimal) 3.20)
-                }
-            };
+
+            Date = new DateTime(2019, 09, 12),
+            Id = 1,
+            Invoice = "favat014",
+            Manager_Id = 1
+        };
         [Test]
         public void CopyConstructor()
         {
-            var result=new Delivery(_delivery);
+            var result = new Delivery(_delivery);
             Assert.AreEqual(_delivery.Date, result.Date);
             Assert.AreEqual(_delivery.Id, result.Id);
             Assert.AreEqual(_delivery.Invoice, result.Invoice);
-            Assert.AreEqual(_delivery.Manager, result.Manager);
+            Assert.AreEqual(_delivery.Manager_Id, result.Manager_Id);
             Assert.AreEqual(_delivery.Products, result.Products);
         }
 
@@ -63,17 +53,7 @@ namespace SmartMarketLibrary.Tests
                 Date = new DateTime(2019, 09, 12),
                 Id = 2,
                 Invoice = "favat014",
-                Manager = new Employee()
-                {
-                    Id = 2,
-                    Login = "Karuzela102",
-                    Password = DatabaseServices.GetMd5Hash("NUnit01"),
-                    Role = RolesEnum.Manager
-                },
-                Products = new List<Tuple<Product, int, decimal>>()
-                {
-                    new Tuple<Product, int, decimal>(new Product(), 5, (decimal) 3.20)
-                }
+                Manager_Id = 5
             }));
         }
     }

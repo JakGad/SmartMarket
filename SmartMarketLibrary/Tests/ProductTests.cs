@@ -20,7 +20,7 @@ namespace SmartMarketLibrary.Tests
             Name = "Vicodine",
             NetPrice = (decimal)40,
             Quantity = 50,
-            ProductGroup = new Group()
+            ProductGroup_Id = 1
         };
 
         [Test]
@@ -34,14 +34,9 @@ namespace SmartMarketLibrary.Tests
             Assert.AreEqual(result.Name, _product.Name);
             Assert.AreEqual(result.NetPrice, _product.NetPrice);
             Assert.AreEqual(result.Quantity, _product.Quantity);
-            Assert.AreEqual(result.ProductGroup, _product.ProductGroup);
+            Assert.AreEqual(result.ProductGroup_Id, _product.ProductGroup_Id);
         }
 
-        [Test]
-        public void Price()
-        {
-            Assert.AreEqual(_product.Price, _product.NetPrice+_product.Margin*_product.NetPrice+_product.NetPrice*_product.ProductGroup.Vat);
-        }
 
         [Test]
         public void EqualsTrue()
@@ -62,7 +57,7 @@ namespace SmartMarketLibrary.Tests
                 Name = "Vicodine",
                 NetPrice = (decimal)40,
                 Quantity = 50,
-                ProductGroup = new Group()
+                ProductGroup_Id = 1
             }));
         }
     }
