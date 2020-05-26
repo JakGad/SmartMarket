@@ -9,7 +9,7 @@ namespace SmartMarketLibrary
 {
     public class DatabaseServices : IDisposable
     {
-        public Entities _model;
+        private Entities _model;
 
         public DatabaseServices(Entities model)
         {
