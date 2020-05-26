@@ -25,14 +25,16 @@ namespace SmartMarketLibrary
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<EmployeeChange> EmployeesChanges { get; set; }
+        public virtual DbSet<ProductChange> ProductsChanges { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
-        public virtual DbSet<DeliveryChange> DeliveriesChanges { get; set; }
+        public virtual DbSet<DeliveriesChanges> DeliveriesChanges { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeChange> EmployeesChanges { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<ProductDelivery> ProductDeliveries { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductChange> ProductsChanges { get; set; }
+        public virtual DbSet<SaleProduct> SaleProducts { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
     }

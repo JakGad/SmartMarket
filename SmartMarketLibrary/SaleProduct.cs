@@ -12,15 +12,14 @@ namespace SmartMarketLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class DeliveryChange
+    public partial class SaleProduct
     {
-        public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public string Details { get; set; }
-        public Nullable<int> Changing_Id { get; set; }
-        public Nullable<int> Changed_ID { get; set; }
+        public int Product { get; set; }
+        public int Sale { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
     
-        public virtual Delivery Delivery { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual Product Product1 { get; set; }
+        public virtual Sale Sale1 { get; set; }
     }
 }

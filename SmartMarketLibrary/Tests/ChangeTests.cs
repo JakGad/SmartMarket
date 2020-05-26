@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System;
 
 namespace SmartMarketLibrary.Tests
 {
@@ -24,17 +19,15 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void Constructor()
         {
-            var result = new EmployeeChange(_employee, _employee,  "SomeDetails");
+            var result = new EmployeeChange(_employee, _employee, "SomeDetails");
             Assert.IsTrue(result.Date - DateTime.Now < new TimeSpan(0, 0, 0, 2));
-            Assert.AreEqual(result.Employee, _employee);
-            Assert.AreEqual(result.Employee1, _employee);
             Assert.AreEqual(result.Details, "SomeDetails");
         }
 
         [Test]
         public void CopyConstructor()
         {
-            var temp = new EmployeeChange(_employee,_employee,  "SomeDetails");
+            var temp = new EmployeeChange(_employee, _employee, "SomeDetails");
             temp.Id = 2;
             var result = new EmployeeChange(temp);
             Assert.AreEqual(result.Date, temp.Date);

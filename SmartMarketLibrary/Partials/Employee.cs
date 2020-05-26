@@ -1,13 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace SmartMarketLibrary
 {
     partial class Employee
     {
+        public ObservableCollection<string> Rol { get; set; } = new ObservableCollection<string>() { "Manager", "Cashier" };
+        public string RoleS
+        {
+            get
+            {
+                if (Role == 0) return "Manager";
+                return "Cashier";
+            }
+            set
+            {
+                var temp = value;
+                if (temp.EndsWith("Manager"))
+                {
+                    Role = 0;
+                }
+                else
+                {
+                    Role = 1;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public Employee(Employee toCopy)
         {
             Name = toCopy.Name;

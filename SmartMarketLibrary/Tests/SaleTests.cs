@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 namespace SmartMarketLibrary.Tests
 {
     [TestFixture]
     class SaleTests
     {
-        private static Sale _sale=new Sale()
+        private static Sale _sale = new Sale()
         {
             Date = DateTime.Today,
             Id = 1,
@@ -20,7 +16,7 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void CopyConstructor()
         {
-            var result=new Sale(_sale);
+            var result = new Sale(_sale);
             Assert.AreEqual(result.Seller_Id, _sale.Seller_Id);
             Assert.AreEqual(result.Date, _sale.Date);
             Assert.AreEqual(result.Id, _sale.Id);

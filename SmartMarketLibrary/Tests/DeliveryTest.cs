@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System;
 
 namespace SmartMarketLibrary.Tests
 {
@@ -36,7 +32,7 @@ namespace SmartMarketLibrary.Tests
             Assert.AreEqual(_delivery.Id, result.Id);
             Assert.AreEqual(_delivery.Invoice, result.Invoice);
             Assert.AreEqual(_delivery.Manager_Id, result.Manager_Id);
-            Assert.AreEqual(_delivery.Products, result.Products);
+            Assert.AreEqual(_delivery.ProductDeliveries, result.ProductDeliveries);
         }
 
         [Test]

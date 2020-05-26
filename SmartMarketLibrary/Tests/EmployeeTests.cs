@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace SmartMarketLibrary.Tests
 {
@@ -21,7 +16,7 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void CopyConstructor()
         {
-            var result=new Employee(_employee);
+            var result = new Employee(_employee);
             Assert.AreEqual(result.Id, _employee.Id);
             Assert.AreEqual(result.Login, _employee.Login);
             Assert.AreEqual(result.Password, _employee.Password);

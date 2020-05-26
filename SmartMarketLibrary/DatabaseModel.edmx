@@ -29,11 +29,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Details" Type="nvarchar(max)" />
-          <Property Name="Changing_Id" Type="int" />
-          <Property Name="Changed_ID" Type="int" />
+          <Property Name="Changing_Id" Type="int" Nullable="false" />
+          <Property Name="Changed_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -49,11 +49,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Details" Type="nvarchar(max)" />
-          <Property Name="Changing_Id" Type="int" />
-          <Property Name="Changed_ID" Type="int" />
+          <Property Name="Changing_Id" Type="int" Nullable="false" />
+          <Property Name="Changed_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -92,11 +92,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Details" Type="nvarchar(max)" />
-          <Property Name="Changing_Id" Type="int" />
-          <Property Name="Changed_ID" Type="int" />
+          <Property Name="Changing_Id" Type="int" Nullable="false" />
+          <Property Name="Changed_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleProduct">
           <Key>
@@ -124,8 +124,8 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="NIP" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__Deliverie__Chang__5535A963">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK__Deliverie__Chang__76969D2E">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="DeliveriesChanges" Type="Self.DeliveriesChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -136,15 +136,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Deliverie__Chang__5629CD9C">
-          <End Role="Deliveries" Type="Self.Deliveries" Multiplicity="0..1" />
+        <Association Name="FK__Deliverie__Chang__778AC167">
+          <End Role="Deliveries" Type="Self.Deliveries" Multiplicity="1" />
           <End Role="DeliveriesChanges" Type="Self.DeliveriesChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Deliveries">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DeliveriesChanges">
-              <PropertyRef Name="Changed_ID" />
+              <PropertyRef Name="Changed_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -160,8 +160,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__Chang__49C3F6B7">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK__Employees__Chang__72C60C4A">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="EmployeesChanges" Type="Self.EmployeesChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -172,15 +172,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__Chang__4AB81AF0">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK__Employees__Chang__73BA3083">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="EmployeesChanges" Type="Self.EmployeesChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EmployeesChanges">
-              <PropertyRef Name="Changed_ID" />
+              <PropertyRef Name="Changed_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -208,8 +208,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsC__Chang__4D94879B">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+        <Association Name="FK__ProductsC__Chang__7E37BEF6">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="ProductsChanges" Type="Self.ProductsChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -220,15 +220,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductsC__Chang__4E88ABD4">
-          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+        <Association Name="FK__ProductsC__Chang__7F2BE32F">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ProductsChanges" Type="Self.ProductsChanges" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductsChanges">
-              <PropertyRef Name="Changed_ID" />
+              <PropertyRef Name="Changed_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,11 +305,11 @@
           <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Deliverie__Chang__5535A963" Association="Self.FK__Deliverie__Chang__5535A963">
+          <AssociationSet Name="FK__Deliverie__Chang__76969D2E" Association="Self.FK__Deliverie__Chang__76969D2E">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="DeliveriesChanges" EntitySet="DeliveriesChanges" />
           </AssociationSet>
-          <AssociationSet Name="FK__Deliverie__Chang__5629CD9C" Association="Self.FK__Deliverie__Chang__5629CD9C">
+          <AssociationSet Name="FK__Deliverie__Chang__778AC167" Association="Self.FK__Deliverie__Chang__778AC167">
             <End Role="Deliveries" EntitySet="Deliveries" />
             <End Role="DeliveriesChanges" EntitySet="DeliveriesChanges" />
           </AssociationSet>
@@ -317,11 +317,11 @@
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Deliveries" EntitySet="Deliveries" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Chang__49C3F6B7" Association="Self.FK__Employees__Chang__49C3F6B7">
+          <AssociationSet Name="FK__Employees__Chang__72C60C4A" Association="Self.FK__Employees__Chang__72C60C4A">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="EmployeesChanges" EntitySet="EmployeesChanges" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Chang__4AB81AF0" Association="Self.FK__Employees__Chang__4AB81AF0">
+          <AssociationSet Name="FK__Employees__Chang__73BA3083" Association="Self.FK__Employees__Chang__73BA3083">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="EmployeesChanges" EntitySet="EmployeesChanges" />
           </AssociationSet>
@@ -333,11 +333,11 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductDelivery" EntitySet="ProductDelivery" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsC__Chang__4D94879B" Association="Self.FK__ProductsC__Chang__4D94879B">
+          <AssociationSet Name="FK__ProductsC__Chang__7E37BEF6" Association="Self.FK__ProductsC__Chang__7E37BEF6">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="ProductsChanges" EntitySet="ProductsChanges" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductsC__Chang__4E88ABD4" Association="Self.FK__ProductsC__Chang__4E88ABD4">
+          <AssociationSet Name="FK__ProductsC__Chang__7F2BE32F" Association="Self.FK__ProductsC__Chang__7F2BE32F">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductsChanges" EntitySet="ProductsChanges" />
           </AssociationSet>
@@ -366,15 +366,109 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="marketDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeChange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Changing_Id" Type="Int32" Nullable="false" />
+          <Property Name="Changed_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="marketDB.FK__Employees__Chang__72C60C4A" FromRole="EmployeeChange" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="marketDB.FK__Employees__Chang__73BA3083" FromRole="EmployeeChange" ToRole="Employee" />
+          </EntityType>
+        <EntityType Name="ProductChange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Changing_Id" Type="Int32" Nullable="false" />
+          <Property Name="Changed_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="marketDB.FK__ProductsC__Chang__7E37BEF6" FromRole="ProductChange" ToRole="Employee" />
+          <NavigationProperty Name="Product" Relationship="marketDB.FK__ProductsC__Chang__7F2BE32F" FromRole="ProductChange" ToRole="Product" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeesChanges" EntityType="Self.EmployeeChange" />
+          <EntitySet Name="ProductsChanges" EntityType="Self.ProductChange" />
+          <EntitySet Name="C__MigrationHistory" EntityType="marketDB.C__MigrationHistory" />
+          <EntitySet Name="Deliveries" EntityType="marketDB.Delivery" />
+          <EntitySet Name="DeliveriesChanges" EntityType="marketDB.DeliveriesChanges" />
+          <EntitySet Name="Employees" EntityType="marketDB.Employee" />
+          <EntitySet Name="Groups" EntityType="marketDB.Group" />
+          <EntitySet Name="ProductDeliveries" EntityType="marketDB.ProductDelivery" />
+          <EntitySet Name="Products" EntityType="marketDB.Product" />
+          <EntitySet Name="SaleProducts" EntityType="marketDB.SaleProduct" />
+          <EntitySet Name="Sales" EntityType="marketDB.Sale" />
+          <EntitySet Name="Suppliers" EntityType="marketDB.Supplier" />
+          <AssociationSet Name="FK__Deliverie__Chang__778AC167" Association="marketDB.FK__Deliverie__Chang__778AC167">
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="DeliveriesChanx" EntitySet="DeliveriesChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deliverie__Suppl__628FA481" Association="marketDB.FK__Deliverie__Suppl__628FA481">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Delivery" EntitySet="Deliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductDe__Deliv__619B8048" Association="marketDB.FK__ProductDe__Deliv__619B8048">
+            <End Role="Delivery" EntitySet="Deliveries" />
+            <End Role="ProductDelivery" EntitySet="ProductDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Deliveries_dbo_Employees_Manager_Id" Association="marketDB.FK_dbo_Deliveries_dbo_Employees_Manager_Id">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Delivery" EntitySet="Deliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deliverie__Chang__76969D2E" Association="marketDB.FK__Deliverie__Chang__76969D2E">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="DeliveriesChanx" EntitySet="DeliveriesChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Chang__72C60C4A" Association="marketDB.FK__Employees__Chang__72C60C4A">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeChange" EntitySet="EmployeesChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Chang__73BA3083" Association="marketDB.FK__Employees__Chang__73BA3083">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeChange" EntitySet="EmployeesChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsC__Chang__7E37BEF6" Association="marketDB.FK__ProductsC__Chang__7E37BEF6">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ProductChange" EntitySet="ProductsChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sales_dbo_Employees_Seller_Id" Association="marketDB.FK_dbo_Sales_dbo_Employees_Seller_Id">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Products_dbo_Groups_ProductGroup_Id" Association="marketDB.FK_dbo_Products_dbo_Groups_ProductGroup_Id">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductDe__Produ__60A75C0F" Association="marketDB.FK__ProductDe__Produ__60A75C0F">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductDelivery" EntitySet="ProductDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductsC__Chang__7F2BE32F" Association="marketDB.FK__ProductsC__Chang__7F2BE32F">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductChange" EntitySet="ProductsChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SaleProdu__Produ__5CD6CB2B" Association="marketDB.FK__SaleProdu__Produ__5CD6CB2B">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SaleProduct" EntitySet="SaleProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SaleProduc__Sale__5DCAEF64" Association="marketDB.FK__SaleProduc__Sale__5DCAEF64">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SaleProduct" EntitySet="SaleProducts" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
             <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Delivery">
           <Key>
@@ -384,23 +478,23 @@
           <Property Name="Invoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Manager_Id" Type="Int32" />
-          <NavigationProperty Name="DeliveriesChanges" Relationship="Self.FK__Deliverie__Chang__5629CD9C" FromRole="Deliveries" ToRole="DeliveriesChanges" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_Deliveries_dbo_Employees_Manager_Id" FromRole="Deliveries" ToRole="Employees" />
-          <NavigationProperty Name="Products" Relationship="marketDB.ProductDelivery" FromRole="Delivery" ToRole="Product" />
           <Property Name="SupplierId" Type="Int32" />
+          <NavigationProperty Name="DeliveriesChanges" Relationship="marketDB.FK__Deliverie__Chang__778AC167" FromRole="Delivery" ToRole="DeliveriesChanx" />
           <NavigationProperty Name="Supplier" Relationship="marketDB.FK__Deliverie__Suppl__628FA481" FromRole="Delivery" ToRole="Supplier" />
+          <NavigationProperty Name="ProductDeliveries" Relationship="marketDB.FK__ProductDe__Deliv__619B8048" FromRole="Delivery" ToRole="ProductDelivery" />
+          <NavigationProperty Name="Employee" Relationship="marketDB.FK_dbo_Deliveries_dbo_Employees_Manager_Id" FromRole="Delivery" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="DeliveryChange">
+        <EntityType Name="DeliveriesChanges">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Changing_Id" Type="Int32" />
-          <Property Name="Changed_ID" Type="Int32" />
-          <NavigationProperty Name="Delivery" Relationship="Self.FK__Deliverie__Chang__5629CD9C" FromRole="DeliveriesChanges" ToRole="Deliveries" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Deliverie__Chang__5535A963" FromRole="DeliveriesChanges" ToRole="Employees" />
+          <Property Name="Changing_Id" Type="Int32" Nullable="false" />
+          <Property Name="Changed_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Delivery" Relationship="marketDB.FK__Deliverie__Chang__778AC167" FromRole="DeliveriesChanx" ToRole="Delivery" />
+          <NavigationProperty Name="Employee" Relationship="marketDB.FK__Deliverie__Chang__76969D2E" FromRole="DeliveriesChanx" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -411,24 +505,12 @@
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Deliveries" Relationship="Self.FK_dbo_Deliveries_dbo_Employees_Manager_Id" FromRole="Employees" ToRole="Deliveries" />
-          <NavigationProperty Name="DeliveriesChanges" Relationship="Self.FK__Deliverie__Chang__5535A963" FromRole="Employees" ToRole="DeliveriesChanges" />
-          <NavigationProperty Name="EmployeesChanges" Relationship="Self.FK__Employees__Chang__49C3F6B7" FromRole="Employees" ToRole="EmployeesChanges" />
-          <NavigationProperty Name="EmployeesChanges1" Relationship="Self.FK__Employees__Chang__4AB81AF0" FromRole="Employees" ToRole="EmployeesChanges" />
-          <NavigationProperty Name="ProductsChanges" Relationship="Self.FK__ProductsC__Chang__4D94879B" FromRole="Employees" ToRole="ProductsChanges" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK_dbo_Sales_dbo_Employees_Seller_Id" FromRole="Employees" ToRole="Sales" />
-        </EntityType>
-        <EntityType Name="EmployeeChange">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Changing_Id" Type="Int32" />
-          <Property Name="Changed_ID" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Employees__Chang__49C3F6B7" FromRole="EmployeesChanges" ToRole="Employees" />
-          <NavigationProperty Name="Employee1" Relationship="Self.FK__Employees__Chang__4AB81AF0" FromRole="EmployeesChanges" ToRole="Employees" />
+          <NavigationProperty Name="Deliveries" Relationship="marketDB.FK_dbo_Deliveries_dbo_Employees_Manager_Id" FromRole="Employee" ToRole="Delivery" />
+          <NavigationProperty Name="DeliveriesChanges" Relationship="marketDB.FK__Deliverie__Chang__76969D2E" FromRole="Employee" ToRole="DeliveriesChanx" />
+          <NavigationProperty Name="EmployeesChanges" Relationship="marketDB.FK__Employees__Chang__72C60C4A" FromRole="Employee" ToRole="EmployeeChange" />
+          <NavigationProperty Name="EmployeesChanges1" Relationship="marketDB.FK__Employees__Chang__73BA3083" FromRole="Employee" ToRole="EmployeeChange" />
+          <NavigationProperty Name="ProductsChanges" Relationship="marketDB.FK__ProductsC__Chang__7E37BEF6" FromRole="Employee" ToRole="ProductChange" />
+          <NavigationProperty Name="Sales" Relationship="marketDB.FK_dbo_Sales_dbo_Employees_Seller_Id" FromRole="Employee" ToRole="Sale" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -436,9 +518,21 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Vat" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Vat" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Is18" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_dbo_Products_dbo_Groups_ProductGroup_Id" FromRole="Groups" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="marketDB.FK_dbo_Products_dbo_Groups_ProductGroup_Id" FromRole="Group" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductDelivery">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Delivery" />
+          </Key>
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="Delivery" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Delivery1" Relationship="marketDB.FK__ProductDe__Deliv__619B8048" FromRole="ProductDelivery" ToRole="Delivery" />
+          <NavigationProperty Name="Product1" Relationship="marketDB.FK__ProductDe__Produ__60A75C0F" FromRole="ProductDelivery" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -447,28 +541,28 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Manufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NetPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NetPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Margin" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Margin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Availability" Type="Boolean" Nullable="false" />
           <Property Name="ProductGroup_Id" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_dbo_Products_dbo_Groups_ProductGroup_Id" FromRole="Products" ToRole="Groups" />
-          <NavigationProperty Name="ProductsChanges" Relationship="Self.FK__ProductsC__Chang__4E88ABD4" FromRole="Products" ToRole="ProductsChanges" />
-          <NavigationProperty Name="Sales" Relationship="marketDB.SaleProduct" FromRole="Product" ToRole="Sale" />
-          <NavigationProperty Name="Deliveries" Relationship="marketDB.ProductDelivery" FromRole="Product" ToRole="Delivery" />
+          <NavigationProperty Name="Group" Relationship="marketDB.FK_dbo_Products_dbo_Groups_ProductGroup_Id" FromRole="Product" ToRole="Group" />
+          <NavigationProperty Name="ProductDeliveries" Relationship="marketDB.FK__ProductDe__Produ__60A75C0F" FromRole="Product" ToRole="ProductDelivery" />
+          <NavigationProperty Name="ProductsChanges" Relationship="marketDB.FK__ProductsC__Chang__7F2BE32F" FromRole="Product" ToRole="ProductChange" />
+          <NavigationProperty Name="SaleProducts" Relationship="marketDB.FK__SaleProdu__Produ__5CD6CB2B" FromRole="Product" ToRole="SaleProduct" />
         </EntityType>
-        <EntityType Name="ProductChange">
+        <EntityType Name="SaleProduct">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Sale" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Changing_Id" Type="Int32" />
-          <Property Name="Changed_ID" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__ProductsC__Chang__4D94879B" FromRole="ProductsChanges" ToRole="Employees" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__ProductsC__Chang__4E88ABD4" FromRole="ProductsChanges" ToRole="Products" />
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="Sale" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product1" Relationship="marketDB.FK__SaleProdu__Produ__5CD6CB2B" FromRole="SaleProduct" ToRole="Product" />
+          <NavigationProperty Name="Sale1" Relationship="marketDB.FK__SaleProduc__Sale__5DCAEF64" FromRole="SaleProduct" ToRole="Sale" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -477,8 +571,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Seller_Id" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_Sales_dbo_Employees_Seller_Id" FromRole="Sales" ToRole="Employees" />
-          <NavigationProperty Name="Products" Relationship="marketDB.SaleProduct" FromRole="Sale" ToRole="Product" />
+          <NavigationProperty Name="Employee" Relationship="marketDB.FK_dbo_Sales_dbo_Employees_Seller_Id" FromRole="Sale" ToRole="Employee" />
+          <NavigationProperty Name="SaleProducts" Relationship="marketDB.FK__SaleProduc__Sale__5DCAEF64" FromRole="Sale" ToRole="SaleProduct" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -489,181 +583,17 @@
           <Property Name="NIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Deliveries" Relationship="marketDB.FK__Deliverie__Suppl__628FA481" FromRole="Supplier" ToRole="Delivery" />
         </EntityType>
-        <Association Name="FK__Deliverie__Chang__5629CD9C">
-          <End Role="Deliveries" Type="Self.Delivery" Multiplicity="0..1" />
-          <End Role="DeliveriesChanges" Type="Self.DeliveryChange" Multiplicity="*" />
+        <Association Name="FK__Deliverie__Chang__778AC167">
+          <End Type="marketDB.Delivery" Role="Delivery" Multiplicity="1" />
+          <End Type="marketDB.DeliveriesChanges" Role="DeliveriesChanx" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Deliveries">
+            <Principal Role="Delivery">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="DeliveriesChanges">
-              <PropertyRef Name="Changed_ID" />
+            <Dependent Role="DeliveriesChanx">
+              <PropertyRef Name="Changed_Id" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Deliveries_dbo_Employees_Manager_Id">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Deliveries" Type="Self.Delivery" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Deliveries">
-              <PropertyRef Name="Manager_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Deliverie__Chang__5535A963">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="DeliveriesChanges" Type="Self.DeliveryChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DeliveriesChanges">
-              <PropertyRef Name="Changing_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employees__Chang__49C3F6B7">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="EmployeesChanges" Type="Self.EmployeeChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EmployeesChanges">
-              <PropertyRef Name="Changing_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employees__Chang__4AB81AF0">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="EmployeesChanges" Type="Self.EmployeeChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EmployeesChanges">
-              <PropertyRef Name="Changed_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductsC__Chang__4D94879B">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="ProductsChanges" Type="Self.ProductChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductsChanges">
-              <PropertyRef Name="Changing_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Sales_dbo_Employees_Seller_Id">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="Seller_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Products_dbo_Groups_ProductGroup_Id">
-          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
-          <End Role="Products" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="ProductGroup_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductsC__Chang__4E88ABD4">
-          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductsChanges" Type="Self.ProductChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductsChanges">
-              <PropertyRef Name="Changed_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
-          <EntitySet Name="DeliveriesChanges" EntityType="Self.DeliveryChange" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="EmployeesChanges" EntityType="Self.EmployeeChange" />
-          <EntitySet Name="Groups" EntityType="Self.Group" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ProductsChanges" EntityType="Self.ProductChange" />
-          <EntitySet Name="Sales" EntityType="Self.Sale" />
-          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-          <AssociationSet Name="FK__Deliverie__Chang__5629CD9C" Association="Self.FK__Deliverie__Chang__5629CD9C">
-            <End Role="Deliveries" EntitySet="Deliveries" />
-            <End Role="DeliveriesChanges" EntitySet="DeliveriesChanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Deliveries_dbo_Employees_Manager_Id" Association="Self.FK_dbo_Deliveries_dbo_Employees_Manager_Id">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Deliveries" EntitySet="Deliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Deliverie__Chang__5535A963" Association="Self.FK__Deliverie__Chang__5535A963">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="DeliveriesChanges" EntitySet="DeliveriesChanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employees__Chang__49C3F6B7" Association="Self.FK__Employees__Chang__49C3F6B7">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="EmployeesChanges" EntitySet="EmployeesChanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employees__Chang__4AB81AF0" Association="Self.FK__Employees__Chang__4AB81AF0">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="EmployeesChanges" EntitySet="EmployeesChanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductsC__Chang__4D94879B" Association="Self.FK__ProductsC__Chang__4D94879B">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="ProductsChanges" EntitySet="ProductsChanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Sales_dbo_Employees_Seller_Id" Association="Self.FK_dbo_Sales_dbo_Employees_Seller_Id">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Products_dbo_Groups_ProductGroup_Id" Association="Self.FK_dbo_Products_dbo_Groups_ProductGroup_Id">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductsC__Chang__4E88ABD4" Association="Self.FK__ProductsC__Chang__4E88ABD4">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="ProductsChanges" EntitySet="ProductsChanges" />
-          </AssociationSet>
-          <AssociationSet Name="SaleProduct" Association="marketDB.SaleProduct">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Sale" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="ProductDelivery" Association="marketDB.ProductDelivery">
-            <End Role="Delivery" EntitySet="Deliveries" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Deliverie__Suppl__628FA481" Association="marketDB.FK__Deliverie__Suppl__628FA481">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="Delivery" EntitySet="Deliveries" />
-          </AssociationSet>
-        </EntityContainer>
-        <Association Name="SaleProduct">
-          <End Type="marketDB.Product" Role="Product" Multiplicity="*" />
-          <End Type="marketDB.Sale" Role="Sale" Multiplicity="*" />
-        </Association>
-        <Association Name="ProductDelivery">
-          <End Type="marketDB.Delivery" Role="Delivery" Multiplicity="*" />
-          <End Type="marketDB.Product" Role="Product" Multiplicity="*" />
         </Association>
         <Association Name="FK__Deliverie__Suppl__628FA481">
           <End Type="marketDB.Supplier" Role="Supplier" Multiplicity="0..1" />
@@ -677,19 +607,185 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK__ProductDe__Deliv__619B8048">
+          <End Type="marketDB.Delivery" Role="Delivery" Multiplicity="1" />
+          <End Type="marketDB.ProductDelivery" Role="ProductDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDelivery">
+              <PropertyRef Name="Delivery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Deliveries_dbo_Employees_Manager_Id">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="marketDB.Delivery" Role="Delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Delivery">
+              <PropertyRef Name="Manager_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deliverie__Chang__76969D2E">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="marketDB.DeliveriesChanges" Role="DeliveriesChanx" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveriesChanx">
+              <PropertyRef Name="Changing_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Chang__72C60C4A">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="marketDB.EmployeeChange" Role="EmployeeChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeChange">
+              <PropertyRef Name="Changing_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Chang__73BA3083">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="marketDB.EmployeeChange" Role="EmployeeChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeChange">
+              <PropertyRef Name="Changed_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsC__Chang__7E37BEF6">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="marketDB.ProductChange" Role="ProductChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductChange">
+              <PropertyRef Name="Changing_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sales_dbo_Employees_Seller_Id">
+          <End Type="marketDB.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="marketDB.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="Seller_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Products_dbo_Groups_ProductGroup_Id">
+          <End Type="marketDB.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="marketDB.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductGroup_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductDe__Produ__60A75C0F">
+          <End Type="marketDB.Product" Role="Product" Multiplicity="1" />
+          <End Type="marketDB.ProductDelivery" Role="ProductDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDelivery">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductsC__Chang__7F2BE32F">
+          <End Type="marketDB.Product" Role="Product" Multiplicity="1" />
+          <End Type="marketDB.ProductChange" Role="ProductChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductChange">
+              <PropertyRef Name="Changed_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SaleProdu__Produ__5CD6CB2B">
+          <End Type="marketDB.Product" Role="Product" Multiplicity="1" />
+          <End Type="marketDB.SaleProduct" Role="SaleProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleProduct">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SaleProduc__Sale__5DCAEF64">
+          <End Type="marketDB.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="marketDB.SaleProduct" Role="SaleProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleProduct">
+              <PropertyRef Name="Sale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="marketDBStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="EmployeesChanges">
+            <EntityTypeMapping TypeName="marketDB.EmployeeChange">
+              <MappingFragment StoreEntitySet="EmployeesChanges">
+                <ScalarProperty Name="Changed_Id" ColumnName="Changed_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Changing_Id" ColumnName="Changing_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsChanges">
+            <EntityTypeMapping TypeName="marketDB.ProductChange">
+              <MappingFragment StoreEntitySet="ProductsChanges">
+                <ScalarProperty Name="Changed_Id" ColumnName="Changed_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Changing_Id" ColumnName="Changing_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="marketDB.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -697,117 +793,99 @@
             <EntityTypeMapping TypeName="marketDB.Delivery">
               <MappingFragment StoreEntitySet="Deliveries">
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Manager_Id" ColumnName="Manager_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeliveriesChanges">
-            <EntityTypeMapping TypeName="marketDB.DeliveryChange">
+            <EntityTypeMapping TypeName="marketDB.DeliveriesChanges">
               <MappingFragment StoreEntitySet="DeliveriesChanges">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Changed_Id" ColumnName="Changed_Id" />
                 <ScalarProperty Name="Changing_Id" ColumnName="Changing_Id" />
-                <ScalarProperty Name="Changed_ID" ColumnName="Changed_ID" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="marketDB.Employee">
               <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeesChanges">
-            <EntityTypeMapping TypeName="marketDB.EmployeeChange">
-              <MappingFragment StoreEntitySet="EmployeesChanges">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="Changing_Id" ColumnName="Changing_Id" />
-                <ScalarProperty Name="Changed_ID" ColumnName="Changed_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="marketDB.Group">
               <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Vat" ColumnName="Vat" />
                 <ScalarProperty Name="Is18" ColumnName="Is18" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDeliveries">
+            <EntityTypeMapping TypeName="marketDB.ProductDelivery">
+              <MappingFragment StoreEntitySet="ProductDelivery">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="marketDB.Product">
               <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
-                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Margin" ColumnName="Margin" />
-                <ScalarProperty Name="Availability" ColumnName="Availability" />
                 <ScalarProperty Name="ProductGroup_Id" ColumnName="ProductGroup_Id" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Margin" ColumnName="Margin" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductsChanges">
-            <EntityTypeMapping TypeName="marketDB.ProductChange">
-              <MappingFragment StoreEntitySet="ProductsChanges">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="Changing_Id" ColumnName="Changing_Id" />
-                <ScalarProperty Name="Changed_ID" ColumnName="Changed_ID" />
+          <EntitySetMapping Name="SaleProducts">
+            <EntityTypeMapping TypeName="marketDB.SaleProduct">
+              <MappingFragment StoreEntitySet="SaleProduct">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="marketDB.Sale">
               <MappingFragment StoreEntitySet="Sales">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Seller_Id" ColumnName="Seller_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Suppliers">
             <EntityTypeMapping TypeName="marketDB.Supplier">
               <MappingFragment StoreEntitySet="Suppliers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="SaleProduct" TypeName="marketDB.SaleProduct" StoreEntitySet="SaleProduct">
-            <EndProperty Name="Sale">
-              <ScalarProperty Name="Id" ColumnName="Sale" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="Product" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ProductDelivery" TypeName="marketDB.ProductDelivery" StoreEntitySet="ProductDelivery">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="Product" />
-            </EndProperty>
-            <EndProperty Name="Delivery">
-              <ScalarProperty Name="Id" ColumnName="Delivery" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

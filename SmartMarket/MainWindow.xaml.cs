@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmartMarketLibrary;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SmartMarketLibrary;
 
 namespace SmartMarket
 {
@@ -22,18 +10,55 @@ namespace SmartMarket
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        internal class EmployeeWrapper : EventArgs
+        {
+            public Employee EmployeeToWrap;
+        }
+        internal DatabaseServices Services { get; }
+        private Employee _loggedIn;
+        private void OnLogin(object sender, EmployeeWrapper user)
+        {
+            _loggedIn = user.EmployeeToWrap;
+            LoginControl.Visibility = Visibility.Hidden;
+            if (_loggedIn.Role == 1)
+            {
+
+
+
+                CashierControl.Initialize(Services, _loggedIn);
+                CashierControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ManagerControl.Initialize(Services, _loggedIn);
+                ManagerControl.Visibility = Visibility.Visible;
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
-            var ds=new DatabaseServices(new DBModel());
-            var emp=ds.Login("ADDmiN", "Hassloo12");
-            ds.AddEmployee(new Employee()
-            {
-                Login = "abram12",
-                Name = "Julia Abrams",
-                Password = DatabaseServices.GetMd5Hash("hass13"),
-                Role = RolesEnum.Cashier
-            }, emp);
+            Services = Factory.GetServices();
+
+            LoginControl.InitMainWindow(this);
+            LoginControl.LoginSuccessful += OnLogin;
+            LoginControl.Visibility = Visibility.Visible;
+
+        }
+
+
+    }
+
+    public class WaitCursor : IDisposable
+    {
+        public WaitCursor()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+        }
+
+        public void Dispose()
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
     }
 }

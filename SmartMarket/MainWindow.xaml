@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartMarket"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        WindowState="Maximized">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="background - Copy.jpg"/>
+        </Grid.Background>
+        <local:QuitMinimize VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 5, 5, 0" />
+        <local:LoginControl Background="White" x:Name="LoginControl"/>
+        <local:CashierControl Background="White" x:Name="CashierControl" Visibility="Hidden" Margin="40,40,40,40" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+        <local:ManagerControl Background="White" x:Name="ManagerControl" Visibility="Hidden" Margin="40,40,40,40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </Window>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="SmartMarket.SuppliersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartMarket"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.Named.Primary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <ListView
+            ItemsSource="{Binding Suppliers}" Margin="0,0,80,0" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Header="Name" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="200" Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200"
+                                    Header="NIP" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Width="200" Text="{Binding NIP}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="AddSupplierButton"
+            Style="{StaticResource MaterialDesignFloatingActionButton}"
+            ToolTip="Add Supplier"
+            VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 10, 10, 0" Click="AddGroupButton_Click" >
+            <materialDesign:PackIcon
+                Kind="TooltipAccount"
+                Height="24"
+                Width="24" />
+        </Button>
+        <Button x:Name="SaveChangesButton"
+                Style="{StaticResource MaterialDesignFloatingActionButton}"
+                ToolTip="Save changes"
+                VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 80, 10, 0" Click="SaveChangesButton_Click">
+            <materialDesign:PackIcon
+                Kind="ContentSave"
+                Height="24"
+                Width="24" />
+        </Button>
+        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="ErrorConnectingDialog" Height="70" HorizontalAlignment="Center">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Margin="20" Height="70" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Error while connecting to database" />
+                    <Button Content="Close" Grid.Row="1"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

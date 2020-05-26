@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace SmartMarketLibrary
 {
@@ -14,7 +10,11 @@ namespace SmartMarketLibrary
             Date = toCopy.Date;
             Seller_Id = toCopy.Seller_Id;
             Employee = toCopy.Employee;
-            Products = toCopy.Products;
+            SaleProducts = toCopy.SaleProducts;
+        }
+        public decimal SumValue
+        {
+            get => SaleProducts.Select(x => x.Price * x.Quantity).Sum();
         }
 
         public override bool Equals(object obj)
@@ -23,7 +23,7 @@ namespace SmartMarketLibrary
             if (obj is Sale sale)
             {
                 return sale.Id == Id && sale.Date == Date && sale.Seller_Id == Seller_Id &&
-                       (sale.Employee?.Equals(Employee)??Employee==null) && (sale.Products?.Equals(Products)??Products==null);
+                       (sale.Employee?.Equals(Employee) ?? Employee == null) && (sale.SaleProducts?.Equals(SaleProducts) ?? SaleProducts == null);
             }
 
             return false;

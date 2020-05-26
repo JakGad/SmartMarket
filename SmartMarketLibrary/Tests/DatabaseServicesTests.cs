@@ -1,16 +1,10 @@
-﻿using System;
+﻿using Moq;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using SmartMarketLibrary;
 
 
 
@@ -62,7 +56,7 @@ namespace SmartMarketLibrary.Tests
             _changesMock.As<IQueryable<EmployeeChange>>().Setup(m => m.Expression).Returns(changes.Expression);
             _changesMock.As<IQueryable<EmployeeChange>>().Setup(m => m.ElementType).Returns(changes.ElementType);
             _changesMock.As<IQueryable<EmployeeChange>>().Setup(m => m.GetEnumerator()).Returns(changes.GetEnumerator());
-            
+
             _contextMock = new Mock<Entities>();
             _contextMock.Setup(x => x.Employees).Returns(_employeesMock.Object);
             _contextMock.Setup(x => x.EmployeesChanges).Returns(_changesMock.Object);
@@ -175,13 +169,13 @@ namespace SmartMarketLibrary.Tests
             }
         };
 
-        private List<DeliveryChange> _changes=new List<DeliveryChange>();
+        private List<DeliveriesChanges> _changes = new List<DeliveriesChanges>();
         private DatabaseServices _services;
         private Mock<DbSet<Delivery>> _deliveryMock;
-        private Mock<DbSet<DeliveryChange>> _changesMock;
+        private Mock<DbSet<DeliveriesChanges>> _changesMock;
         private Mock<Entities> _contextMock;
         private IQueryable<Delivery> deliveries;
-        private IQueryable<DeliveryChange> changes;
+        private IQueryable<DeliveriesChanges> changes;
         private IQueryable<Employee> _employees;
         private Mock<DbSet<Employee>> _employeesMock;
 
@@ -196,13 +190,13 @@ namespace SmartMarketLibrary.Tests
             _deliveryMock.As<IQueryable<Delivery>>().Setup(m => m.GetEnumerator()).Returns(deliveries.GetEnumerator());
 
             changes = _changes.AsQueryable();
-            _changesMock = new Mock<DbSet<DeliveryChange>>();
-            _changesMock.As<IQueryable<DeliveryChange>>().Setup(m => m.Provider).Returns(changes.Provider);
-            _changesMock.As<IQueryable<DeliveryChange>>().Setup(m => m.Expression).Returns(changes.Expression);
-            _changesMock.As<IQueryable<DeliveryChange>>().Setup(m => m.ElementType).Returns(changes.ElementType);
-            _changesMock.As<IQueryable<DeliveryChange>>().Setup(m => m.GetEnumerator()).Returns(changes.GetEnumerator());
+            _changesMock = new Mock<DbSet<DeliveriesChanges>>();
+            _changesMock.As<IQueryable<DeliveriesChanges>>().Setup(m => m.Provider).Returns(changes.Provider);
+            _changesMock.As<IQueryable<DeliveriesChanges>>().Setup(m => m.Expression).Returns(changes.Expression);
+            _changesMock.As<IQueryable<DeliveriesChanges>>().Setup(m => m.ElementType).Returns(changes.ElementType);
+            _changesMock.As<IQueryable<DeliveriesChanges>>().Setup(m => m.GetEnumerator()).Returns(changes.GetEnumerator());
 
-            _employees = new List<Employee>() {_employee}.AsQueryable();
+            _employees = new List<Employee>() { _employee }.AsQueryable();
             _employeesMock = new Mock<DbSet<Employee>>();
             _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(_employees.Provider);
             _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(_employees.Expression);
@@ -227,29 +221,16 @@ namespace SmartMarketLibrary.Tests
             Assert.AreEqual(_deliveries, result);
         }
 
-        [Test]
-        public void AddDelivery()
-        {
-            var deliveryToAdd = new Delivery()
-            {
-                Date = DateTime.Now,
-                Invoice = "fjwijeo324",
-                Manager_Id = 1
-            };
-            _services.AddDelivery(deliveryToAdd, _employee);
-            _deliveryMock.Verify(m => m.Add(It.IsAny<Delivery>()), Times.Once);
-            _changesMock.Verify(m => m.Add(It.IsAny<DeliveryChange>()), Times.Once);
-            _contextMock.Verify(m => m.SaveChanges(), Times.Once);
-        }
+        
 
         [Test]
         public void UpdateDelivery_Success()
         {
             var delToUpdate = new Delivery(_deliveries[0]);
-            delToUpdate.Manager_Id=3;
+            delToUpdate.Manager_Id = 3;
             var result = _services.UpdateDelivery(delToUpdate, _employee);
             Assert.IsTrue(result);
-            _changesMock.Verify(m => m.Add(It.IsAny<DeliveryChange>()), Times.Once);
+            _changesMock.Verify(m => m.Add(It.IsAny<DeliveriesChanges>()), Times.Once);
             _contextMock.Verify(m => m.SaveChanges(), Times.Once);
         }
 
@@ -257,7 +238,7 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void UpdateDelivery_CannotFindDelivery()
         {
-            var delToUpdate = new Delivery(_deliveries[0]); 
+            var delToUpdate = new Delivery(_deliveries[0]);
             delToUpdate.Manager_Id = 3;
             delToUpdate.Id = 100000;
             var result = _services.UpdateDelivery(delToUpdate, _employee);
@@ -301,7 +282,7 @@ namespace SmartMarketLibrary.Tests
             _groupsMock.As<IQueryable<Group>>().Setup(m => m.ElementType).Returns(_queryGroups.ElementType);
             _groupsMock.As<IQueryable<Group>>().Setup(m => m.GetEnumerator()).Returns(_queryGroups.GetEnumerator());
 
-            _contextMock=new Mock<Entities>();
+            _contextMock = new Mock<Entities>();
             _contextMock.Setup(m => m.Groups).Returns(_groupsMock.Object);
             _services = new DatabaseServices(_contextMock.Object);
         }
@@ -351,6 +332,15 @@ namespace SmartMarketLibrary.Tests
     [TestFixture]
     class ProductsTesting
     {
+
+        private Employee _employee = new Employee()
+        {
+            Id = 2,
+            Login = "Karuzela102",
+            Password = DatabaseServices.GetMd5Hash("NUnit01"),
+            Role = 0
+        };
+
         private readonly List<Product> _productsList = new List<Product>()
         {
             new Product()
@@ -383,7 +373,8 @@ namespace SmartMarketLibrary.Tests
         private Mock<DbSet<ProductChange>> _changesMock;
         private Mock<Entities> _contextMock;
         private DatabaseServices _services;
-
+        private IQueryable<Employee> _employees;
+        private Mock<DbSet<Employee>> _employeesMock;
 
         [SetUp]
         public void init()
@@ -398,17 +389,25 @@ namespace SmartMarketLibrary.Tests
 
 
             _changesQueryable = new List<ProductChange>().AsQueryable();
-            _changesMock=new Mock<DbSet<ProductChange>>();
-            _changesMock=new Mock<DbSet<ProductChange>>();
+            _changesMock = new Mock<DbSet<ProductChange>>();
+            _changesMock = new Mock<DbSet<ProductChange>>();
             _changesMock.As<IQueryable<ProductChange>>().Setup(m => m.Provider).Returns(_changesQueryable.Provider);
             _changesMock.As<IQueryable<ProductChange>>().Setup(m => m.Expression).Returns(_changesQueryable.Expression);
             _changesMock.As<IQueryable<ProductChange>>().Setup(m => m.ElementType).Returns(_changesQueryable.ElementType);
             _changesMock.As<IQueryable<ProductChange>>().Setup(m => m.GetEnumerator()).Returns(_changesQueryable.GetEnumerator());
 
+            _employees = new List<Employee>() { _employee }.AsQueryable();
+            _employeesMock = new Mock<DbSet<Employee>>();
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(_employees.Provider);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(_employees.Expression);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(_employees.ElementType);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(_employees.GetEnumerator());
+
 
             _contextMock = new Mock<Entities>();
             _contextMock.Setup(m => m.Products).Returns(_productsMock.Object);
             _contextMock.Setup(m => m.ProductsChanges).Returns(_changesMock.Object);
+            _contextMock.Setup(m => m.Employees).Returns(_employeesMock.Object);
             _services = new DatabaseServices(_contextMock.Object);
         }
 
@@ -433,8 +432,8 @@ namespace SmartMarketLibrary.Tests
                 Quantity = 50
             };
 
-            var result = _services.AddProduct(productToAdd, new Employee());
-            Assert.AreEqual(result, 0);
+            var result = _services.AddProduct(productToAdd, _employee);
+            Assert.IsTrue(result);
             _changesMock.Verify(m => m.Add(It.IsAny<ProductChange>()), Times.Once);
             _productsMock.Verify(m => m.Add(It.IsAny<Product>()), Times.Once);
             _contextMock.Verify(m => m.SaveChanges(), Times.Once);
@@ -444,8 +443,8 @@ namespace SmartMarketLibrary.Tests
         public void UpdateProduct()
         {
             var productToUpdate = _productsList[0];
-            var result = _services.UpdateProduct(productToUpdate, new Employee());
-            Assert.AreEqual(result, 0);
+            var result = _services.UpdateProduct(productToUpdate, _employee);
+            Assert.IsTrue(result);
             _changesMock.Verify(m => m.Add(It.IsAny<ProductChange>()), Times.Once);
             _contextMock.Verify(m => m.SaveChanges(), Times.Once);
         }
@@ -454,8 +453,14 @@ namespace SmartMarketLibrary.Tests
     [TestFixture]
     class SalesTesting
     {
-        
-        private readonly List<Sale> _salesList=new List<Sale>()
+        private Employee _employee = new Employee()
+        {
+            Id = 2,
+            Login = "Karuzela102",
+            Password = DatabaseServices.GetMd5Hash("NUnit01"),
+            Role = 0
+        };
+        private readonly List<Sale> _salesList = new List<Sale>()
         {
             new Sale()
             {
@@ -469,7 +474,8 @@ namespace SmartMarketLibrary.Tests
         private Mock<DbSet<Sale>> _salesMock;
         private Mock<Entities> _contextMock;
         private DatabaseServices _services;
-
+        private IQueryable<Employee> _employees;
+        private Mock<DbSet<Employee>> _employeesMock;
 
         [SetUp]
         public void init()
@@ -482,9 +488,18 @@ namespace SmartMarketLibrary.Tests
             _salesMock.As<IQueryable<Sale>>().Setup(m => m.ElementType).Returns(_salesQueryable.ElementType);
             _salesMock.As<IQueryable<Sale>>().Setup(m => m.GetEnumerator()).Returns(_salesQueryable.GetEnumerator());
 
-            _contextMock=new Mock<Entities>();
+            _employees = new List<Employee>() { _employee }.AsQueryable();
+            _employeesMock = new Mock<DbSet<Employee>>();
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(_employees.Provider);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(_employees.Expression);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(_employees.ElementType);
+            _employeesMock.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(_employees.GetEnumerator());
+
+
+            _contextMock = new Mock<Entities>();
             _contextMock.Setup(m => m.Sales).Returns(_salesMock.Object);
-            _services=new DatabaseServices(_contextMock.Object);
+            _contextMock.Setup(m => m.Employees).Returns(_employeesMock.Object);
+            _services = new DatabaseServices(_contextMock.Object);
         }
 
         [Test]
@@ -494,23 +509,9 @@ namespace SmartMarketLibrary.Tests
             Assert.AreEqual(result, _salesList);
         }
 
-        [Test]
-        public void AddSale()
-        {
-            var saleToAdd=new Sale(_salesList[0]);
-            saleToAdd.Id = 2;
-            _services.AddSale(saleToAdd, new Employee()
-            {
-                Id = 2,
-                Login = "Karuzela102",
-                Password = DatabaseServices.GetMd5Hash("NUnit01"),
-                Role = 1
-            });
-            _salesMock.Verify(m=>m.Add(It.IsAny<Sale>()), Times.Once);
-            _contextMock.Verify(m=>m.SaveChanges(), Times.Once);
-        }
-
         
+
+
     }
 
     [TestFixture]
@@ -551,9 +552,10 @@ namespace SmartMarketLibrary.Tests
             _suppliersMock.As<IQueryable<Supplier>>().Setup(m => m.ElementType).Returns(_suppliersQueryable.ElementType);
             _suppliersMock.As<IQueryable<Supplier>>().Setup(m => m.GetEnumerator()).Returns(_suppliersQueryable.GetEnumerator());
 
-            _contextMock=new Mock<Entities>();
+
+            _contextMock = new Mock<Entities>();
             _contextMock.Setup(m => m.Suppliers).Returns(_suppliersMock.Object);
-            _services=new DatabaseServices(_contextMock.Object);
+            _services = new DatabaseServices(_contextMock.Object);
         }
 
         [Test]
@@ -567,14 +569,14 @@ namespace SmartMarketLibrary.Tests
         [Test]
         public void AddSupplier()
         {
-            var supplierToAdd=new Supplier()
+            var supplierToAdd = new Supplier()
             {
                 Name = "Supply3",
                 NIP = "213732123"
             };
             _services.AddSupplier(supplierToAdd);
-            _suppliersMock.Verify(m=>m.Add(It.IsAny<Supplier>()), Times.Once);
-            _contextMock.Verify(m=>m.SaveChanges());
+            _suppliersMock.Verify(m => m.Add(It.IsAny<Supplier>()), Times.Once);
+            _contextMock.Verify(m => m.SaveChanges());
         }
 
         [Test]
@@ -586,8 +588,8 @@ namespace SmartMarketLibrary.Tests
                 Name = "Supply3",
                 NIP = "213732123"
             };
-            var result=_services.UpdateSupplier(supplierToUpdate);
-            Assert.Equals(result, 0);
+            var result = _services.UpdateSupplier(supplierToUpdate);
+            Assert.IsTrue(result);
             _contextMock.Verify(m => m.SaveChanges());
         }
 

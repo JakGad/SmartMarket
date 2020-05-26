@@ -1,34 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartMarketLibrary
 {
-    partial class DeliveryChange
+    partial class DeliveriesChanges
     {
-        public DeliveryChange()
+        public DeliveriesChanges()
         {
         }
 
-        public DeliveryChange(Employee changing, Delivery changed, string detalis)
+        public DeliveriesChanges(Employee changing, Delivery changed, string detalis)
         {
-            Date=DateTime.Now;
+            Date = DateTime.Now;
             Details = detalis;
             Changing_Id = changing.Id;
-            Changed_ID = changed.Id;
-            Employee = changing;
-            Delivery = changed;
+            Changed_Id = changed.Id;
+            // Employee = changing;
+            // Delivery = changed;
         }
 
-        public DeliveryChange(DeliveryChange toCopy)
+        public DeliveriesChanges(DeliveriesChanges toCopy)
         {
             Id = toCopy.Id;
             Date = toCopy.Date;
             Details = toCopy.Details;
             Changing_Id = toCopy.Changing_Id;
-            Changed_ID = toCopy.Changed_ID;
+            Changed_Id = toCopy.Changed_Id;
             Delivery = toCopy.Delivery;
             Employee = toCopy.Employee;
         }
@@ -36,10 +32,10 @@ namespace SmartMarketLibrary
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            if (obj is DeliveryChange change)
+            if (obj is DeliveriesChanges change)
             {
                 return Id == change.Id && Date == change.Date && Details == change.Details &&
-                       Changing_Id == change.Changing_Id && Changed_ID == change.Changed_ID;
+                       Changing_Id == change.Changing_Id && Changed_Id == change.Changed_Id;
             }
 
             return false;
@@ -57,9 +53,9 @@ namespace SmartMarketLibrary
             Date = DateTime.Now;
             Details = detalis;
             Changing_Id = changing.Id;
-            Changed_ID = changed.Id;
-            Employee = changing;
-            Employee1 = changed;
+            Changed_Id = changed.Id;
+            // Employee = changing;
+            // Employee1 = changed;
         }
 
         public EmployeeChange(EmployeeChange toCopy)
@@ -68,7 +64,7 @@ namespace SmartMarketLibrary
             Date = toCopy.Date;
             Details = toCopy.Details;
             Changing_Id = toCopy.Changing_Id;
-            Changed_ID = toCopy.Changed_ID;
+            Changed_Id = toCopy.Changed_Id;
             Employee1 = toCopy.Employee1;
             Employee = toCopy.Employee;
         }
@@ -79,7 +75,7 @@ namespace SmartMarketLibrary
             if (obj is EmployeeChange change)
             {
                 return Id == change.Id && Date == change.Date && Details == change.Details &&
-                       Changing_Id == change.Changing_Id && Changed_ID == change.Changed_ID;
+                       Changing_Id == change.Changing_Id && Changed_Id == change.Changed_Id;
             }
 
             return false;
@@ -97,9 +93,7 @@ namespace SmartMarketLibrary
             Date = DateTime.Now;
             Details = detalis;
             Changing_Id = changing.Id;
-            Changed_ID = changed.Id;
-            Employee = changing;
-            Product = changed;
+            Changed_Id = changed.Id;
         }
 
         public ProductChange(ProductChange toCopy)
@@ -108,9 +102,9 @@ namespace SmartMarketLibrary
             Date = toCopy.Date;
             Details = toCopy.Details;
             Changing_Id = toCopy.Changing_Id;
-            Changed_ID = toCopy.Changed_ID;
-            Product = toCopy.Product;
-            Employee = toCopy.Employee;
+            Changed_Id = toCopy.Changed_Id;
+            // Product = toCopy.Product;
+            // Employee = toCopy.Employee;
         }
 
         public override bool Equals(object obj)
@@ -119,11 +113,11 @@ namespace SmartMarketLibrary
             if (obj is ProductChange change)
             {
                 return Id == change.Id && Date == change.Date && Details == change.Details &&
-                       Changing_Id == change.Changing_Id && Changed_ID == change.Changed_ID;
+                       Changing_Id == change.Changing_Id && Changed_Id == change.Changed_Id;
             }
 
             return false;
         }
     }
-    
+
 }

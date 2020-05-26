@@ -18,7 +18,7 @@ namespace SmartMarketLibrary
         public Employee()
         {
             this.Deliveries = new HashSet<Delivery>();
-            this.DeliveriesChanges = new HashSet<DeliveryChange>();
+            this.DeliveriesChanges = new HashSet<DeliveriesChanges>();
             this.EmployeesChanges = new HashSet<EmployeeChange>();
             this.EmployeesChanges1 = new HashSet<EmployeeChange>();
             this.ProductsChanges = new HashSet<ProductChange>();
@@ -34,7 +34,7 @@ namespace SmartMarketLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Delivery> Deliveries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryChange> DeliveriesChanges { get; set; }
+        public virtual ICollection<DeliveriesChanges> DeliveriesChanges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeChange> EmployeesChanges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

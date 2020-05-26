@@ -17,7 +17,7 @@ namespace SmartMarketLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sale()
         {
-            this.Products = new HashSet<Product>();
+            this.SaleProducts = new HashSet<SaleProduct>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace SmartMarketLibrary
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<SaleProduct> SaleProducts { get; set; }
     }
 }

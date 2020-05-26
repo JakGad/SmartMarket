@@ -17,8 +17,8 @@ namespace SmartMarketLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Delivery()
         {
-            this.DeliveriesChanges = new HashSet<DeliveryChange>();
-            this.Products = new HashSet<Product>();
+            this.DeliveriesChanges = new HashSet<DeliveriesChanges>();
+            this.ProductDeliveries = new HashSet<ProductDelivery>();
         }
     
         public int Id { get; set; }
@@ -28,10 +28,10 @@ namespace SmartMarketLibrary
         public Nullable<int> SupplierId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryChange> DeliveriesChanges { get; set; }
-        public virtual Employee Employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<DeliveriesChanges> DeliveriesChanges { get; set; }
         public virtual Supplier Supplier { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductDelivery> ProductDeliveries { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

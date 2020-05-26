@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartMarketLibrary
 {
@@ -14,7 +11,7 @@ namespace SmartMarketLibrary
         DateTime Date { get; }
     }
 
-    interface ICashierSale:ISale
+    interface ICashierSale : ISale
     {
         new Employee Seller { get; set; }
         new IReadOnlyList<Tuple<Product, int, decimal>> Sold { get; set; }

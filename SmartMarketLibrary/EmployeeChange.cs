@@ -17,8 +17,8 @@ namespace SmartMarketLibrary
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public string Details { get; set; }
-        public Nullable<int> Changing_Id { get; set; }
-        public Nullable<int> Changed_ID { get; set; }
+        public int Changing_Id { get; set; }
+        public int Changed_Id { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Employee Employee1 { get; set; }

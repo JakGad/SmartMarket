@@ -92,7 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryChange.cs">
+    <Compile Include="DeliveriesChanges.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Delivery.cs">
@@ -104,6 +104,7 @@
     <Compile Include="EmployeeChange.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Factory.cs" />
     <Compile Include="Group.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -112,10 +113,12 @@
     <Compile Include="DatabaseServices.cs" />
     <Compile Include="Partials\Changes.cs" />
     <Compile Include="Partials\Delivery.cs" />
+    <Compile Include="Partials\ProductDelivery.cs" />
     <Compile Include="Partials\Employee.cs" />
     <Compile Include="Partials\Group.cs" />
     <Compile Include="Partials\Product.cs" />
     <Compile Include="Partials\Sale.cs" />
+    <Compile Include="Partials\SaleProduct.cs" />
     <Compile Include="Partials\Supplier.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -123,8 +126,15 @@
     <Compile Include="ProductChange.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductDelivery.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sale.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleProduct.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">

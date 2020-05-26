@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmartMarketLibrary.Annotations;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SmartMarketLibrary
 {
-    partial class Product
+    partial class Product : INotifyPropertyChanged
     {
+
         public Product(Product toCopy)
         {
             Id = toCopy.Id;
@@ -21,6 +21,17 @@ namespace SmartMarketLibrary
             ProductGroup_Id = toCopy.ProductGroup_Id;
             Group = toCopy.Group;
             ProductsChanges = toCopy.ProductsChanges;
+        }
+
+        private ObservableCollection<Group> _groups;
+        public ObservableCollection<Group> Groups
+        {
+            get => _groups;
+            set
+            {
+                _groups = value;
+                OnPropertyChanged(nameof(Groups));
+            }
         }
 
         public override bool Equals(object obj)
@@ -39,6 +50,28 @@ namespace SmartMarketLibrary
         public decimal Price
         {
             get => NetPrice + Margin * NetPrice + (Group?.Vat ?? 0) * NetPrice;
+        }
+
+        public void set(Product toCopy)
+        {
+            Name = toCopy.Name;
+            Manufacturer = toCopy.Manufacturer;
+            NetPrice = toCopy.NetPrice;
+            Quantity = toCopy.Quantity;
+            Code = toCopy.Code;
+            Margin = toCopy.Margin;
+            Availability = toCopy.Availability;
+            ProductGroup_Id = toCopy.ProductGroup_Id;
+            Group = toCopy.Group;
+            ProductsChanges = toCopy.ProductsChanges;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
